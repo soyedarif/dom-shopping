@@ -39,7 +39,7 @@ buttons.forEach(button => {
     })
 });
 document.getElementById('btn-clear').addEventListener('click',function(){
-
+    serial=0;
     setElementInnerText('total-amount',00);
     setElementInnerText('total-product',00);
     const tableContainer=document.getElementById('table-container');
