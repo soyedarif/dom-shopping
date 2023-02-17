@@ -1,3 +1,4 @@
+let serial=0;
 function productPrice(price,quantity){
     const priceProduct=parseInt(price);
     const quantityProduct=parseInt(quantity)
@@ -10,7 +11,15 @@ function getElementInnerNumber(id){
 function setElementInnerText(id,value){
     document.getElementById(id).innerText=value;
 }
-let serial=0;
+function removeItem(button){
+    const row=button.parentNode.parentNode;
+    const price=row.childNodes[9].innerText;
+    row.parentNode.removeChild(row);
+    serial--;
+    setElementInnerText('total-product',serial)
+    const previousPrice=getElementInnerNumber('total-amount')
+    setElementInnerText('total-amount',previousPrice-price)
+}
 const buttons=document.querySelectorAll('.btn-shop');
 buttons.forEach(button => {
     button.addEventListener('click',function(e){
@@ -30,6 +39,7 @@ buttons.forEach(button => {
         <td>${price}</td>
         <td>${quantity}</td>
         <td>${total}</td>
+        <td><button class="btn btn-primary" onclick="removeItem(this)">Remove</button></td>
       </tr>
         `
         tableContainer.appendChild(tr);
